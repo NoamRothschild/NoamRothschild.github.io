@@ -45,6 +45,13 @@ jobs:
           ruby-version: 3.3
           bundler-cache: true
 
+      - name: Download Bootstrap SCSS
+        run: |
+          mkdir -p assets/vendors
+          git clone --depth=1 --filter=blob:none --sparse https://github.com/twbs/bootstrap assets/vendors/bootstrap
+          cd assets/vendors/bootstrap
+          git sparse-checkout set scss
+
       - name: Build site
         run: bundle exec jekyll b -d "_site${{ steps.pages.outputs.base_path }}"
         env:
