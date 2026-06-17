@@ -1,12 +1,14 @@
 <script>
+    import { getIsMobileContext } from '$lib/isMobile';
     import { images } from './assets';
     import EntryInfo from './EntryInfo.svelte';
 
-    const { isMobile = false } = $props();
+    // const {  } = $props();
+    const isMobile = $derived(getIsMobileContext().current);
 </script>
 
 <div class="entry" class:mobile={isMobile}>
-    <EntryInfo {isMobile}
+    <EntryInfo
         title="Discord && Voxel Space built using Assembly, no libc"
         text={`
         Re-Implemented the SHA1 && Base64 protocols
@@ -34,7 +36,7 @@
 <br><br><br><br><br><br>
 
 <div class="entry" class:mobile={isMobile}>
-    <EntryInfo {isMobile}
+    <EntryInfo
         title="POC of a Distributed MMO game server architecture"
         text={`
         In a team of 5 colleagues, I was the leader. Together we:
@@ -54,7 +56,7 @@
 <br><br><br><br><br><br>
 
 <div class="entry" class:mobile={isMobile}>
-    <EntryInfo {isMobile}
+    <EntryInfo
         title="KIF-Multiplayer && Launcher"
         text={`
         This community has a special place in my heart. Here my spark began.
@@ -80,7 +82,7 @@
 <br><br><br><br><br><br>
 
 <div class="entry" class:mobile={isMobile}>
-    <EntryInfo {isMobile}
+    <EntryInfo
         title="Asm-Interpreter"
         text={`
         My school has an entrance exam to the cyber class in assembly.
@@ -107,7 +109,7 @@
 <br><br><br><br><br><br>
 
 <div class="entry" class:mobile={isMobile}>
-    <EntryInfo {isMobile}
+    <EntryInfo
         title="Magshimim's Projects"
         text={`
         I am currently partipicating in the <b>Magshimim</b> program.
@@ -134,7 +136,7 @@
 <br><br><br><br><br><br>
 
 <div class="entry" class:mobile={isMobile}>
-    <EntryInfo {isMobile}
+    <EntryInfo
         title="Misc / Abandoned Projects"
         height_override="35vw"
         text={`

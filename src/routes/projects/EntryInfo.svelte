@@ -2,10 +2,12 @@
     import github_svg from "$lib/assets/github.svg";
     import Icon from "./Icon.svelte";
     import { iconOfLang } from "$lib";
+    import { getIsMobileContext } from '$lib/isMobile';
     const defaultHeight: string = "22.5vw";
 
+    const isMobile = $derived(getIsMobileContext().current);
     // title: string, text: string, langs: []string, ghs: []strings, height?: string
-    const { title, text, langs, ghs, height_override = defaultHeight, isMobile = false } = $props();
+    const { title, text, langs, ghs, height_override = defaultHeight } = $props();
     const width = $derived((!isMobile) ? "45vw" : "90vw");
     const height = $derived(
         isMobile
@@ -22,11 +24,11 @@
 
     <div class="icons">
         {#each langs as lang_name}
-            <Icon alt={lang_name} redirect_link="" src={iconOfLang(lang_name)} {isMobile} ></Icon>
+            <Icon alt={lang_name} redirect_link="" src={iconOfLang(lang_name)} ></Icon>
         {/each}
 
         {#each ghs as gh}
-            <Icon alt={gh} redirect_link={gh} src={github_svg} {isMobile} ></Icon>
+            <Icon alt={gh} redirect_link={gh} src={github_svg} ></Icon>
         {/each}
     </div>
 </div>

@@ -1,5 +1,7 @@
 <script>
-    const {src, redirect_link, alt, isMobile = false } = $props();
+    import { getIsMobileContext } from '$lib/isMobile';
+    const {src, redirect_link, alt } = $props();
+    const isMobile = $derived(getIsMobileContext().current);
 </script>
 
 {#if redirect_link != ""}
