@@ -38,6 +38,22 @@
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
-<NavBar {selected} />
+<header class="site-header">
+	<NavBar {selected} />
+</header>
 
-{@render children()}
+<main>
+	{@render children()}
+</main>
+
+<style>
+	.site-header {
+		position: sticky;
+		top: 0;
+		z-index: 100;
+		display: flex;
+		justify-content: center;
+		width: 100%;
+		padding-block: 10px 1.5rem;
+	}
+</style>

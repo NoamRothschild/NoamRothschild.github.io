@@ -12,7 +12,6 @@
     <NavOption selected={selected == 'blogs'} text="blogs"></NavOption>
     <NavOption selected={selected == 'contact'} text="contact"></NavOption>
 </div>
-<br><br><br>
 
 <style>
     .navbar {
@@ -20,10 +19,7 @@
         justify-content: center;
         background-color: #27272A;
 
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
+        width: fit-content;
 
         padding-inline: 3px;
         box-sizing: border-box;
@@ -33,8 +29,6 @@
         
         padding-bottom: 3px;
         padding-top: 3px;
-
-        margin-top: 10px;
     }
 </style>
 
