@@ -1,5 +1,5 @@
 <script>
-    const {src, redirect_link, alt} = $props();
+    const {src, redirect_link, alt, isMobile = false } = $props();
 </script>
 
 {#if redirect_link != ""}
@@ -10,9 +10,19 @@
     <img {src} {alt}>
 {/if}
 
+
+{#if !isMobile}
 <style>
     img {
         height: calc((83 / 2) * (100vw / 1700));
         width: auto;
     }
 </style>
+{:else}
+<style>
+    img {
+        width: calc(15vw);
+        height: auto;
+    }
+</style>
+{/if}

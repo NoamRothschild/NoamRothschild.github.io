@@ -2,31 +2,37 @@
     import github_svg from "$lib/assets/github.svg";
     import Icon from "./Icon.svelte";
     import { iconOfLang } from "$lib";
+    const defaultHeight: string = "22.5vw";
 
     // title: string, text: string, langs: []string, ghs: []strings, height?: string
-    const { title, text, langs, ghs, height = "22.5vw" } = $props();
+    const { title, text, langs, ghs, height_override = defaultHeight, isMobile = false } = $props();
+    const width = $derived((!isMobile) ? "45vw" : "90vw");
+    const height = $derived(
+        isMobile
+            ? "auto"
+            : (height_override != defaultHeight) ? height_override : defaultHeight
+    );
 </script>
 
-<div class="entry-container" style:height={height}>
+<div class="entry-container" class:mobile={isMobile} style:height={height} style:width={width}>
     <br>
     <h2 class="title">{@html title}</h2>
 
-    <p class="text">{@html text}</p>
+    <div class="text">{@html text}</div>
 
     <div class="icons">
         {#each langs as lang_name}
-            <Icon alt={lang_name} redirect_link="" src={iconOfLang(lang_name)} ></Icon>
+            <Icon alt={lang_name} redirect_link="" src={iconOfLang(lang_name)} {isMobile} ></Icon>
         {/each}
 
         {#each ghs as gh}
-            <Icon alt={gh} redirect_link={gh} src={github_svg} ></Icon>
+            <Icon alt={gh} redirect_link={gh} src={github_svg} {isMobile} ></Icon>
         {/each}
     </div>
 </div>
 
 <style>
     .entry-container {
-        width: 45vw;
         background-color: #18181B;
         border-radius: 15px;
         border: 2px solid #25252A;
@@ -35,16 +41,26 @@
         flex-direction: column;
         overflow: hidden;
     }
+    .entry-container.mobile {
+        overflow: visible;
+    }
+
+    .entry-container.mobile .text {
+        flex: none;
+        min-height: unset;
+    }
+
     .title {
         text-align: center;
         flex-shrink: 0;
     }
 
-    p, h2 {
+    h2 {
         color: white;
     }
 
     .text {
+        color: white;
         margin-left: 2%;
         width: 90%;
         font-size: 1.1em;
